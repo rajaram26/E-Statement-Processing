@@ -19,13 +19,19 @@
     font-weight: 300;
   }
   
-  .btn-login {
+    .btn-login {
     font-size: 0.9rem;
     letter-spacing: 0.05rem;
     padding: 0.75rem 1rem;
     border-radius: 2rem;
   }
   
+  .profile-link{
+  	text-decoration:none;
+  }
+  .profile-link:hover{
+  	color:#c0c0c0;
+  }
   .form-label-group {
     position: relative;
     margin-bottom: 1rem;
@@ -168,7 +174,7 @@ section{
 	margin-left: .5rem;
 }
 .sking{
-	margin-left: 65rem;
+	margin-left: 0rem;
 }
 .header-bg {
     background: url('/static/img/rupee.jpg');
@@ -205,6 +211,11 @@ section{
 .step1{
 	padding-top: 0rem;
 }
+
+.img-box:hover{
+	box-shadow: 1px 2px 6px #888888; 
+}
+
 /* Social-media*/
 .fa {
   padding: 20px;
@@ -218,6 +229,7 @@ section{
 
 .fa:hover {
     opacity: 0.7;
+    color:white;
 }
 
 .fa-facebook {
@@ -348,20 +360,25 @@ section{
 }
 
 .add-user-box{
-	height:550px;
+	height:500px;
 	width:500px;
 	padding: 3rem;
 	margin: auto;
 }
 .profile-box{
-	height:280px;
+	height:550px;
 	width:400px;
-	padding: 3rem;
+	padding: 2.5rem;
 	margin: auto;
+	border: solid #c0c0c0 1px;
+	border-radius:.5rem;
 }
 .password{
-	height:150px;
+	height:200px;
 	width:350px;
 	padding: 2rem;
 	margin: auto;
+}
+.profile{
+	margin-left:2rem;
 }
