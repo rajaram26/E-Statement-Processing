@@ -142,6 +142,42 @@ public class ApplicationController {
 	}
 
 	
+		@RequestMapping("/update-password")
+	public String updatepassword(HttpServletRequest req)
+	{
+		req.setAttribute("mode","MODE_UPDATE_PASSWORD");
+		return "homepage";
+	}
+	
+//	@PutMapping("/change-password")
+//	public void changepassword(HttpServletRequest req,HttpServletResponse res,Principal principal,Model model) throws IOException
+//	{
+//		String password = req.getParameter("password");
+//		String email = principal.getName();
+//		LoginUser loginuser = loginservice.findByEmailid(email);
+//		loginservice.changepassword(loginuser,password,email);
+//		model.addAttribute("error", "Your password is updated successfully !!!");
+//		res.sendRedirect("/profile");
+//	}
+	
+	@PostMapping("/send-profile-mail")
+	public String sendmail(HttpServletRequest req,Model model,HttpServletResponse res) throws IOException {
+		String id=req.getParameter("email");
+		LoginUser loginuser=loginservice.findByEmailid(id);
+		
+		try{
+			mailservice.sendEmail(loginuser);
+		}catch(MailException e) {
+			
+		}
+		List<LoginUser> lists = loginservice.findAll();
+		model.addAttribute("lists", lists);
+		req.setAttribute("mode","MODE_EDIT");
+		model.addAttribute("error","Email is send successfully !!!");
+		return "homepage";
+	}
+
+	
 	@RequestMapping("/upload")
 	public String upload(Model model,HttpServletRequest req) {
 		model.addAttribute("fileupload",new Fileupload());
