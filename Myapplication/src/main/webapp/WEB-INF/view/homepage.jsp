@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@page import="com.raja.model.ExportExcel" %>
+<%@page import="com.raja.service.ExportExcel" %>
 <%@page import="com.raja.model.Fileupload" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -12,14 +12,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>eStatment Processing</title>
-<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="container king">
+    <div class="container" style="margin:0">
       <a class="navbar-brand js-scroll-trigger" href="/home">E-Bank</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,26 +69,30 @@
   <c:choose>
   <c:when test="${mode=='MODE_HOME'}">
    <header class="text-white header-bg">
-    <div class="container text-center">
-      <h1 class="font-weight-bold w3-animate-opacity">Welcome Back, Mr/Mrs <c:out value="${user.username}" /></h1>
-      <h2 class="lead w3-animate-opacity">E-statement processor was created to reduce your work just follow the steps given below</h2>
-    </div>
+    <div class="container">
+     <div>
+     	<h1 class="font-weight-bold text-uppercase" style="font-size:5rem">Make Banking <br>smarter </h1>
+     </div>
+     	<h2 class="lead">This is a website which was created to reduce your work<br>Banking area is one of the busy area we are here to reduce your work,<br>All your work are automated we are here to reduce your work</h2>
+     </div>
   </header>
-  <section class="sec">
-  	<div class="container text-center read w3-animate-opacity">
-  		<h1 class="font-weight-bold" >Read the instruction before starting your work</h1>
-  	</div>
+    <section class="sec">
+  	<div class="container text-center read w3-animate-opacity" style="margin-top:1rem;margin-bottom:1rem">
+  		<h1 class="font-weight-bold" >Welcome back,Mr/Mrs <c:out value="${fn:toUpperCase(user.username)}" /></h1>
+  		<h3 class="lead">Make your complicated work smarter and in easier way</h3>
+  	</div><br><br>
   	<div class="container step1 w3-animate-left">
 	  	<div class="row">
 		    <div class="col">
-		      <div class="text-center text-box">
-		  		 	<h1>Step 1:</h1><br>
-		  		 	<h6>First of all choose your .csv<br>file from your system by clicking Upload button</h6>
+		      <div class="text-center text-box" style="margin-right:2.1rem">
+		      		<h3 class="text-right font-weight-bold"><em>Step 1:</em></h3>
+					<br>
+		  		 	<h5 class="text-right font-weight-bold">Choose your .csv file<br> from your system by clicking choose file button <br> and just click upload button</em></h5>
 		  	   </div>
 		    </div>
 		    <div class="col">
 		      <div>
-		  			<img src="/static/img/upload.png" width="500" height="500" alt="not loaded" class="img-thumbnail">
+		  			<img src="/static/img/upload.png" width="500" height="500" alt="not loaded" class="img-thumbnail img-box">
 		  	  </div>
 		    </div>
 	  </div>
@@ -95,13 +101,13 @@
 	  	<div class="row">
 	  	    <div class="col">
 		      <div>
-		  			<img src="/static/img/search.jpg" width="500" height="500" alt="not loaded" class="img-thumbnail">
+		  			<img src="/static/img/search.jpg" width="500" height="500" alt="not loaded" class="img-thumbnail img-box">
 		  	  </div>
 		    </div>
 		    <div class="col">
 		      <div class="text-center text-box">
-		  		 	<h1>Step 2:</h1><br>
-		  		 	<h6>Search the transaction details of specific account holders<br>By searching in the search box</h6>
+		  		 	<h3 class="text-left font-weight-bold"><em>Step 2:</em></h3><br>
+		  		 	<h5 class="text-left font-weight-bold">Search the transaction details of specific account holders<br>By searching in the search box<br> search your data using Account number or specific account number</h5>
 		  	   </div>
 		    </div>
 	  </div>
@@ -109,14 +115,14 @@
 	 <div class="container w3-animate-left">
 	  	<div class="row">
 		    <div class="col">
-		      <div class="text-center text-box">
-		  		 	<h1>Step 3:</h1><br>
-		  		 	<h6>You can view the searched records<br>And you can download the record of<br>specific user as .csv file again</h6>
+		      <div class="text-center text-box" style="margin-right:2.1rem">
+		  		 	<h3 class="text-right font-weight-bold"><em>Step 3:</em></h3><br>
+		  		 	<h5 class="text-right font-weight-bold">You can view the searched records in the grid format<br>And you can download the record of specific user <br>xas .csv or.excel or .pdf formats</h5>
 		  	   </div>
 		    </div>
 		    <div class="col">
 		      <div>
-		  			<img src="/static/img/imp.png" width="500" height="500" alt="not loaded" class="img-thumbnail">
+		  			<img src="/static/img/imp.png" width="500" height="500" alt="not loaded" class="img-thumbnail img-box">
 		  	  </div>
 		    </div>
 	  </div>
@@ -124,7 +130,7 @@
   </section>
   <footer class="py-2 bg-dark">
     <div class="container">
-       <div class="social-media d-flex justify-content-center">
+       <div class="social-media d-flex justify-content-center" style="text-decoration:none">
        		<a href="#" class="fa fa-facebook"></a>
 			<a href="#" class="fa fa-twitter"></a>
 			<a href="#" class="fa fa-google"></a>
@@ -133,6 +139,7 @@
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->
+    
   </footer>
   </c:when>
   <c:when test="${mode=='MODE_ADD' || mode=='MODE_ADD_USER'}">
@@ -145,48 +152,48 @@
   	<div class="container text-center csv-head">
   		<h2 class="font-weight-bold w3-animate-opacity">Enter the details to add user</h2><br><br>
   	</div>
+  	<c:if test="${not empty error}">
+			<div class="container text-center" style="width:500px">
+	              <p class="font-weight-bold alert alert-danger"><c:out value="${error}" /></p>
+	         </div>
+	</c:if> 
   	<div class="container csv-body w3-animate-opacity">
   		<div class="card add-user-box">
-  			<form method="POST" action="/add-user">
+  			<form method="POST" action="/add-user" autocomplete="off">
 			  	<div class="card-body">
 			  			<c:set var="size" value="${fn:length(lists)}"></c:set>
-			  			<div class="form-group">
+			  			<div class="form-label-group">
+						    <input type="text" class="form-control"  name="userid" required autofocus>
     						<label for="username">User ID</label>
-						    <input type="text" class="form-control" placeholder="Enter UserID" name="userid">
 						 </div>
-			  			<div class="form-group d-none">
+			  			<div class="form-label-group d-none">
 						    <input type="text" value="true" name="active">
 						</div>
-				  		<div class="form-group">
+				  		<div class="form-label-group">
+						    <input type="text" class="form-control"  name="username" required>
     						<label for="username">Name</label>
-						    <input type="text" class="form-control" placeholder="Enter name" name="username">
 						 </div>
-						 <div class="form-group">
+						 <div class="form-label-group">
+						    <input type="email" class="form-control"  name="email" required>
     						<label for="email">Email ID</label>
-						    <input type="email" class="form-control" placeholder="Enter email" name="email">
 						 </div>
-						 <div class="form-group">
+						 <div class="form-label-group">
+						    <input type="text" class="form-control" name="role" required>
 						 	<label for="email">Role</label>
-						    <input type="text" class="form-control" name="role" placeholder="Enter role">
 						</div>
-						 <div class="form-group">
+						 <div class="form-label-group">
+						    <input type="text" class="form-control"  name="password" required>
     						<label for="password">Password</label>
-						    <input type="text" class="form-control" placeholder="Enter password" name="password">
 						 </div>
+						 <br><br>
 						 <div class="float-right">
-						 	<button type="submit" class="btn btn-primary">Add User</button>
+						 	<button type="submit" class="btn  btn-primary">Add User</button>
 						 </div>	
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
   		</div><br><br>
-  		<c:choose>
-  		<c:when test="${ mode=='MODE_ADD_USER'}">
-	  		<div class="container text-center">
-	  			<h2 class="font-weight-bold text-uppercase">Fill all the fields !!</h2>
-	  		</div>
-	  	</c:when>
-	  	</c:choose>
+  
   	</div>
   </section>
   </c:when>
@@ -220,12 +227,12 @@
 						  	    	<c:if test="${!fn:containsIgnoreCase(name, 'ROLE_ADMIN')}">
 								      <tr scope="row">
 								      		 <td><c:out value="${list.id }"/></td>
-								             <td><c:out value="${list.username}" /></td>
-								             <td><c:out value="${list.email}" /></td>
 								             <td><c:out value="${list.password}" /></td>
+								             <td><c:out value="${list.email}" /></td>
+								             <td>**********</td>
 								             <td><c:out value="${list.role}" /></td>
 								             <td>
-								             	<div class="d-flex ml-auto">
+									             <div class="d-flex ml-auto">
 									             	<form method="POST" action="/delete-user">
 									             		<input type="text"  class="d-none" name="email" value="${list.id}">
 									             		<button class="btn btn-primary">Delete</button>
@@ -237,13 +244,18 @@
 									             		<button class="btn btn-primary" style="margin-left:1rem;margin-right:-5rem">Send Email</button>
 									             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 									             	</form>
-									         </div>
+									             </div>
 								             </td>
 								       </tr>
 								     </c:if>
 							   </c:forEach>
 					  	</tbody>
 				</table>
+				<c:if test="${not empty error}">
+					<div class="container text-center" style="width:500px">
+			              <p class="font-weight-bold alert alert-primary"><c:out value="${error}" /></p>
+			         </div>
+			    </c:if> 
 			</div>
 	  </section>
   </c:when>
@@ -255,7 +267,7 @@
   </header>
   <section class="sec">
   	<div class="container text-center csv-head">
-  		<h1 class="font-weight-bold w3-animate-opacity">Upload Your file for further work</h1><br><br>
+  		<h3 class="font-weight-bold w3-animate-opacity">Upload Your file for further work</h3><br><br>
 		<c:if test="${not empty error}">
 			<div class="container text-center" style="width:500px">
 	              <p class="font-weight-bold alert alert-danger"><c:out value="${error}" /></p>
@@ -266,11 +278,11 @@
   		<div class="card inner-box">
   			<form method="POST" action="/search" enctype="multipart/form-data">
   			  <div>
-  			  	<h4>Choose your .csv file from your device</h4><br>
+  			  	<h5 class="font-weight-bold">Choose your .csv file from your device</h5><br>
   			  </div>
 			  <div class="card-body">
 				  	<div class="text-center csv-box float-left">
-				  		<input type="file" name="file" accept=".csv" class="file-box"/><br><br><br>
+				  		<input type="file" name="file" accept=".csv" class="file-box" required/><br><br><br>
 				  	</div>
 				    <div class="float-right">
 			  			<button type="submit" class="btn btn-primary">Upload</button>
@@ -298,11 +310,11 @@
 		  <div class="card inner-box">
 				<div class="card-body">
 					<div>
-						<h4 class="text-left">Search by Account Number</h4><br><br>
+						<h5 class="text-left font-weight-bold" style="">Search by Account Number</h5><br><br>
 					</div>
 					<div>
-					    <form class="form-inline md-form mr-auto" method="post" action="/search-clients">
-				       		<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="find">
+					    <form class="form-inline md-form mr-auto" method="post" action="/search-clients"autocomplete="off">
+				       		<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="find" required>
 			          		<button class="btn btn-primary btn-rounded btn-sm my-0 waves-effect waves-light search-button" type="submit">Search</button>
 			          		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				        </form>
@@ -314,18 +326,18 @@
 		  <div class="card inner-box">
 				<div class="card-body">
 					<div>
-						<h4 class="text-left">Search by Date format</h4><br><br>
+						<h5 class="text-left font-weight-bold">Search by Date format</h5><br><br>
 					</div>
 					<div>
 					    <form class="form-inline md-form mr-auto" method="post" action="/search-clientsbydate">
 					    	<div  class="d-flex">
 						    	<div>
 						    		<label for="fromDate" class="float-left">From:</label>
-					       			<input class="form-control mr-sm-2" type="date"  name="fromDate">
+					       			<input class="form-control mr-sm-2" type="date"  name="fromDate" required>
 						    	</div>
 						    	<div>
 						    		<label for="endDate" class="float-left">To:</label>
-					       			<input class="form-control mr-sm-2" type="date"  name="endDate">
+					       			<input class="form-control mr-sm-2" type="date"  name="endDate" required>
 						    	</div>
 					    	</div><br><br><br><br>
 					    	<div class="container ">
@@ -365,11 +377,11 @@
 		  		<div class="card inner-box">
 					  <div class="card-body">
 						  	<div>
-							    <h4 class="text-left">Enter account number and press search</h4><br><br>
+							    <h5 class="text-left font-weight-bold">Enter account number and press search</h5><br><br>
 						  	</div>
 						    <div>
-						        <form class="form-inline md-form mr-auto" method="post" action="/search-clients">
-						          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="find">
+						        <form class="form-inline md-form mr-auto" method="post" action="/search-clients" autocomplete="off">
+						          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="find" required>
 						          <button class="btn btn-primary btn-rounded btn-sm my-0 waves-effect waves-light search-button" type="submit">Search</button>
 						          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						        </form>
@@ -379,7 +391,7 @@
 		   </div><br><br>
 		   <c:if test="${files.size()>0}">
 		   <div class="container">
-		  		<h2>Account Number: ${find}</h2><br><br>
+		  		<h2 class="font-weight-bold">Account Number: ${find}</h2><br><br>
 		  		<table class="table">
 					  <thead class="thead-dark">
 					    <tr>
@@ -428,7 +440,7 @@
 			<br><br><br>
 			<div class="container">
 				  <div class="row d-flex ml-auto">
-				    <div class="col-sm move">
+				    <div class="col-sm move" style="margin-left:8rem">
 				      <form method="post" action="/export-csv">
 						<input type="text" value="${find}" class="form-control mr-sm-2 d-none" name="export">
 						<button class="btn btn-primary download-btn">Export as .csv</button>
@@ -465,18 +477,18 @@
 		  <div class="card inner-box">
 				<div class="card-body">
 					<div>
-						<h4 class="text-left">Search by Date format</h4><br><br>
+						<h4 class="text-left font-weight-bold">Search by Date format</h4><br><br>
 					</div>
 					<div>
 					    <form class="form-inline md-form mr-auto" method="post" action="/search-clientsbydate">
 					    	<div  class="d-flex">
 						    	<div>
 						    		<label for="fromDate" class="float-left">From:</label>
-					       			<input class="form-control mr-sm-2" type="date"  name="fromDate">
+					       			<input class="form-control mr-sm-2" type="date"  name="fromDate" required>
 						    	</div>
 						    	<div>
 						    		<label for="endDate" class="float-left">To:</label>
-					       			<input class="form-control mr-sm-2" type="date"  name="endDate">
+					       			<input class="form-control mr-sm-2" type="date"  name="endDate" required>
 						    	</div>
 					    	</div><br><br><br><br>
 					    	<div class="container ">
@@ -491,7 +503,7 @@
 		<br><br>
 		<c:if test="${files.size()>0}">
 		<div class="container">
-	  		<h2>Account Statements between ${start} and ${end}</h2><br><br>
+	  		<h3 class="font-weight-bold">Account Statements between ${start} and ${end}</h3><br><br>
 	  		<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
@@ -538,9 +550,9 @@
 			</table>
 		</div>
 		<br><br><br>
-			 <div class="container">
+			 <div class="container" >
 			  	<div class="row d-flex ml-auto">
-					<div class="col-sm move">
+					<div class="col-sm" style="margin-left:8rem">
 					      <form method="post" action="/exportbydate-csv">
 							<input type="text" value="${start}" class="form-control mr-sm-2 d-none" name="start">
 							<input type="text" value="${end}" class="form-control mr-sm-2 d-none" name="end">
@@ -583,30 +595,36 @@
     <section class="sec">
     		<c:choose>
     			<c:when test="${mode=='MODE_PROFILE'}">
-		    		<br><br>
-		    		<div class="card profile-box">
-		    			<div class="card-body">
+    				<c:if test="${not empty error}">
+						<div class="container text-center" style="width:500px">
+				              <p class="font-weight-bold alert alert-danger"><c:out value="${error}" /></p>
+				         </div>
+				    </c:if>
+		    		<div class="container">
+		    			<div class="ml-auto profile-box">
+		    				<div class="text-center">
+		    					<img src="/static/img/profile.jpg" alt="raja" style="width:10rem;height:10rem;">
+		    				</div>
+		    				<br><br>
 		    				<div>
-		    					<label class="font-weight-bold">Username:</label>
-		    					<c:out value="${user.username}"/>
+		    					<h3 class="lead"><em>Username:</em></h3>
+		    					<h5 class="font-weight-bold text-touppercase">${user.username}</h5>
 		    				</div>
 		    				<div>
-		    					<label class="font-weight-bold">Email ID:</label>
-		    					<c:out value="${user.email}"/>
+		    					<h3 class="lead"><em>Email-ID:</em></h3>
+		    					<h5 class="font-weight-bold text-touppercase">${user.email}</h5>
 		    				</div>
 		    				<div>
-		    					<label class="font-weight-bold">Password:</label>
-		    					<c:out value="${user.password}"/>
+		    					<h3 class="lead"><em>Role:</em></h3>
+		    					<h5 class="font-weight-bold text-touppercase">${user.role}</h5>
 		    				</div>
 		    				<div>
-		    					<label class="font-weight-bold">Role:</label>
-		    					<c:out value="${user.role}"/>
-		    				</div><br>
-		    				<!-- <div class="text-center">
-		    					<a href="/update-password" class="btn btn-primary float-left">Change Password</a>
-		    				</div> -->
+		    					<h3 class="lead"><em>Password:</em></h3>
+		    					<h5 class="font-weight-bold text-touppercase">${user.password}</h5>
+		    				</div>
+		    				<br><br>
 		    			</div>
-		    		</div>
+		    		</div> 
 		    	</c:when>
 		    	<c:when test="${mode=='MODE_UPDATE_PASSWORD'}">
 		    		<div>
@@ -615,7 +633,7 @@
 		    		<br><br>
 		    		<div class="card password">
 		    			<div class="card-body">
-		    				<form method="POST" action="/change-password">
+		    				<form method="PUT" action="/change-password" autocomplete="off">
 				    				<div>
 				    					<label for="password" >Enter your new password:</label><br>
 							       		<input class="form-control mr-sm-2" type="text"  name="password">
@@ -672,13 +690,13 @@
   	</footer>
   </c:when>
  </c:choose>
-
 <script type="/static/js/bootstrap.min.js"></script>
 <script src="/static/jquery/jquery.min.js"></script>
 <script src="/static/jquery-easing/jquery.easing.min.js"></script>
 <script src="/static/js/scrolling-nav.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </body>
 </html>
